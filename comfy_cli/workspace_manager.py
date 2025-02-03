@@ -53,12 +53,7 @@ def check_comfy_repo(path) -> Tuple[bool, Optional[git.Repo]]:
     if not os.path.exists(path):
         return False, None
     try:
-        print("check_comfy_repo ", path)
         repo = git.Repo(path, search_parent_directories=True)
-        print("Git repo is", repo.remotes)
-        for remote in repo.remotes:
-            print("url is", remote.url)
-        print("Choices", constants.COMFY_ORIGIN_URL_CHOICES)
         path_is_comfy_repo = any(
             remote.url in constants.COMFY_ORIGIN_URL_CHOICES for remote in repo.remotes
         )
